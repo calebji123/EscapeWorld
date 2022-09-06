@@ -25,6 +25,12 @@ var tile;
 var admin = false;
 
 
+function reac(str) {
+    a = document.createElement("a");
+    a.innerHTML=str;
+    return a.firstElementChild;
+}
+
 //displays
 //module codes: 1 -> text module, 2 -> input module, 3 -> image module
 //modlette codes: text module: 1 -> title, 2 -> paragraph
@@ -33,10 +39,7 @@ var admin = false;
 class DTile {
     constructor(pos, state, code, title, modList) {
         this.pos = pos;
-        this.state = state;
-        if (admin) {
-            this.state = 2;
-        }
+        this.state = admin ? 2 : state;
         this.code = code;
         this.title = title;
         this.modList = modList;
@@ -48,15 +51,18 @@ class DTile {
     }
 
     updateDisplay() {
-        let divider = document.createElement("div");
-        divider.classList.add("dividerDiv");
-        let img = document.createElement("img");
-        img.src = "divider.png"
-        img.classList.add("dividerImg");
-        divider.appendChild(img);
+        let divider = reac(`
+        <div class="dividerDiv">
+            <img src="divider.png" class="dividerImg">
+
+            </img>
+        </div>
+        `)
+        
         codeNum.innerHTML = this.code;
         areaName.innerHTML = this.title;
         filler.innerHTML = "";
+
         let first = true;
         for (let i = 0; i < this.modList.length; i++) {
             const modules = this.modList[i];
@@ -82,10 +88,7 @@ class DTile {
 class TextMod {
     constructor(state, id, modletLst, loadLst = []) {
         this.name = "text";
-        this.state = state;
-        if (admin) {
-            this.state = 2;
-        }
+        this.state = admin ? 2 : state;
         this.id = id;
         this.modletLst = modletLst;
         this.loadLst = loadLst;
@@ -99,8 +102,7 @@ class TextMod {
             addNew(this.loadLst);
         }
         let out = document.createElement("div")
-        out.classList.add("flexItem")
-        out.classList.add("textModule")
+        out.classList.add("flexItem", "textModule")
         out.id = this.id;
         for (let i = 0; i < this.modletLst.length; i++) {
             const item = this.modletLst[i];
@@ -121,10 +123,7 @@ class TextMod {
 class InputMod {
     constructor(state, id, modletLst, cpltList) {
         this.name = "input";
-        this.state = state;
-        if (admin) {
-            this.state = 2;
-        }
+        this.state = admin ? 2 : state;
         this.modletLst = modletLst;
         this.id = id;
         this.cpltList = cpltList;
@@ -144,8 +143,7 @@ class InputMod {
 
     create() {
         let out = document.createElement("div")
-        out.classList.add("flexItem")
-        out.classList.add("inptModule")
+        out.classList.add("flexItem", "inptModule")
         out.id = this.id;
         for (let i = 0; i < this.modletLst.length; i++) {
             const item = this.modletLst[i];
@@ -184,10 +182,7 @@ class InputMod {
 class ImgMod {
     constructor(state, id, modletLst) {
         this.name = "img";
-        this.state = state;
-        if (admin) {
-            this.state = 2;
-        }
+        this.state = admin ? 2 : state;
         this.id = id;
         this.modletLst = modletLst;
         this.htmlElem;
@@ -195,8 +190,7 @@ class ImgMod {
 
     create() {
         let out = document.createElement("div")
-        out.classList.add("flexItem")
-        out.classList.add("imgModule")
+        out.classList.add("flexItem", "imgModule")
         out.id = this.id;
         for (let i = 0; i < this.modletLst.length; i++) {
             const item = this.modletLst[i];
@@ -222,18 +216,14 @@ class TitleModlet {
     }
 
     create() {
-        let main = document.createElement("div");
-        main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("dispTitleDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("p");
-        inElem.classList.add("dispTitle")
-        inElem.innerHTML = this.text;
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
-
-        return main;
+        return (reac(`
+        <div class="modulette">
+        <div class="dispTitleDiv flexItem">
+            <p class="dispTitle">
+                ${this.text}
+            </p>
+        </div>
+        `))
     }
 }
 
@@ -245,22 +235,18 @@ class ParaModlet {
     }
 
     create() {
-        let main = document.createElement("div");
-        main.classList.add("modulette");
-        let arr = document.createElement("p");
-        arr.innerHTML = ">"
-        arr.classList.add("dispParaArr");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("dispParaDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("p");
-        inElem.classList.add("dispPara");
-        inElem.innerHTML = this.text;
-        inDiv.appendChild(arr)
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
-
-        return main;
+        return (reac(`
+        <div class="modulette">
+            <div class="dispParaDiv flexItem">
+                <p class="dispParaArr">
+                >
+                </p>
+                <p class="dispPara">
+                ${this.text}
+                </p>
+            </div>
+        </div>
+        `))
     }
 }
 
@@ -281,26 +267,19 @@ class DiaModlet {
     }
 
     create() {
-        let main = document.createElement("div");
-        main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("dispDiaDiv");
-        inDiv.classList.add("flexItem");
-        // let arr = document.createElement("p");
-        // arr.innerHTML = ">"
-        // arr.classList.add("dispParaArr");
-        let inElem1 = document.createElement("p");
-        inElem1.classList.add("dispDiaName");
-        inElem1.innerHTML = this.name + ":";
-        let inElem2 = document.createElement("p");
-        inElem2.innerHTML = "\"" + this.text + "\"";
-        inElem2.classList.add("dispDiaPara");
-        // inDiv.appendChild(arr);
-        inDiv.appendChild(inElem1);
-        inDiv.appendChild(inElem2);
-        main.appendChild(inDiv);
+        return (reac(`
+        <div class="modulette">
+            <div class="dispDiaDiv flexItem">
+                <p class="dispDiaName">
+                    ${this.name}:
+                </p>
+                <p class="dispDiaPara">
+                    "${this.text}"
+                </p>
+            </div>
+        </div>
+        `))
 
-        return main;
     }
 }
 
@@ -314,28 +293,19 @@ class CharModlet {
     }
 
     create() {
-        let main = document.createElement("div");
-        main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("charInpDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("input");
-        inElem.type = "text";
-        inElem.addEventListener("input", inputChange);
-        inElem.addEventListener("keydown", checkDelete);
-        inElem.classList.add("charInp");
-        inElem.maxLength = "2";
-        inElem.autocomplete = "new-password";
-        inElem.id = this.id;
-        inElem.value = this.val;
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
-
-        return main;
+        return (reac(`
+        <div class="modulette">
+            <div class="charInpDiv flexItem">
+                <input class="charInp" type="text" oninput="${inputChange}" onkeydown="${checkDelete}"
+                maxlength="2" autocomplete="new-password" id="${this.id}" value="${this.val}">
+                </input>
+            </div>
+        </div>
+        `))
     }
 
     check() {
-        return this.ans == this.val;
+        return this.ans == document.getElementById(this.id).value;
     }
 }
 
@@ -353,28 +323,17 @@ class WordModlet {
     create() {
         let main = document.createElement("div");
         main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("wordInpDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("input");
-        inElem.type = "text";
-        inElem.addEventListener("input", inputChange);
-        inElem.classList.add("wordInp");
-        inElem.placeholder = this.plc;
-        inElem.autocomplete = "new-password";
-        if (this.oneWord) {
-            inElem.addEventListener("keypress", function () { return event.charCode != 32 });
-        }
-        inElem.value = this.val;
-        inElem.id = this.id;
-        inElem.spellcheck = false;
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
+        main.innerHTML =
+        `<div class="wordInpDiv flexItem">
+            <input type="text" oninput="${inputChange}" class="wordInp" placeholder="${this.plc}"
+            autocomplete="new-password" value="${this.val}" id="${this.id}" spellcheck="false">
+            </input>
+        </div>`
 
         return main;
     }
     check() {
-        return this.ans == this.val;
+        return this.ans == document.getElementById(this.id).value;
     }
 }
 
@@ -391,17 +350,14 @@ class ColModlet {
     create() {
         let main = document.createElement("div");
         main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("colInpDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("input");
-        inElem.type = "button";
-        inElem.addEventListener("click", colChange);
-        inElem.classList.add("colInp");
-        inElem.id = this.id;
-        inElem.style.backgroundColor = this.colLst[this.val]
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
+        main.innerHTML = `
+        <div class="colInpDiv flexItem">
+            <input type="button" class="colInp" id="${this.id}" onclick="${colChange}"
+            style="background-color:${this.colLst[this.val]}">
+            </input>
+        </div>
+        
+        `
 
         return main;
     }
@@ -416,36 +372,22 @@ class SubmitModlet {
     constructor(id, buttonName, local) {
         this.name = "submit";
         this.id = id;
-        this.buttonName = buttonName.toUpperCase();
+        this.buttonName = (buttonName||"submit").toUpperCase();
         this.local = local;
         this.complete = false;
-        if (this.buttonName == "") {
-            this.buttonName = "SUBMIT";
-        }
 
     }
 
     create() {
         let main = document.createElement("div");
         main.classList.add("modulette");
-        let inDiv = document.createElement("div");
-        inDiv.classList.add("submitInpDiv");
-        inDiv.classList.add("flexItem");
-        let inElem = document.createElement("input");
-        inElem.type = "button";
-        inElem.classList.add("submitInp");
-        inElem.addEventListener("click", submit);
-        if (this.complete) {
-            inElem.value = this.buttonName + " ✓";
-        }
-        else if (this.local) {
-            inElem.value = this.buttonName + " 🍃";
-        } else {
-            inElem.value = this.buttonName + " 🍂";
-        }
-        inElem.id = this.id;
-        inDiv.appendChild(inElem);
-        main.appendChild(inDiv);
+        main.innerHTML = `
+        <div class="submitInpDiv flexItem">
+            <input type="button" class="submitInp" onclick="${submit}" id="${this.id}"
+            value="${this.buttonName} ${this.complete ? '✓' : (this.local ? '🍃' : '🍂')}">
+            </input>
+        </div>
+        `
 
         return main;
 
@@ -662,48 +604,60 @@ function createStory1Tiles() {
 
 
 
-
-//display interactables functions
-function inputChange() {
-    let x = document.getElementById(this.id).value.toUpperCase();
-    for (let i = 0; i < tile.modList.length; i++) {
-        const element = tile.modList[i];
-        if (element.name == "input") {
-            for (let j = 0; j < element.inputModlets.length; j++) {
-                const modulette = element.inputModlets[j];
-                if (modulette.id == this.id) {
-                    if (this.maxLength == 2) {
-                        if (x.length > 1) {
-                            x = x.substring(1)
-                        }
+const inputChange = `let x = document.getElementById(this.id).value.toUpperCase();
+for (let i = 0; i < tile.modList.length; i++) {
+    const element = tile.modList[i];
+    if (element.name == 'input') {
+        for (let j = 0; j < element.inputModlets.length; j++) {
+            const modulette = element.inputModlets[j];
+            if (modulette.id == this.id) {
+                if (this.maxLength == 2) {
+                    if (x.length > 1) {
+                        x = x.substring(1)
                     }
-                    modulette.val = x;
-                    document.getElementById(this.id).value = x;
-                    if (this.maxLength == 2) {
-                        if (x.length > 0) {
-                            changeFocus(this, true);
-                        }
+                }
+                modulette.val = x;
+                document.getElementById(this.id).value = x;
+                if (this.maxLength == 2) {
+                    if (x.length > 0) {
+                        changeFocus(this, true);
                     }
                 }
             }
         }
     }
-}
+}`
 
-function checkDelete(e) {
-    let x = document.getElementById(this.id).value.toUpperCase();
-    if (x.length < 1) {
-        if (e.which == 8 || e.which == 48) {
-            changeFocus(this, false)
+const checkDelete = `
+let x = document.getElementById(this.id).value.toUpperCase();
+if (x.length < 1) {
+    if (event.which == 8 || event.which == 48) {
+        changeFocus(this, false)
+    }
+}
+`
+
+const colChange = `
+for (let i = 0; i < tile.modList.length; i++) {
+    const element = tile.modList[i];
+    if (element.name == 'input') {
+        for (let j = 0; j < element.inputModlets.length; j++) {
+            const modulette = element.inputModlets[j];
+            if (modulette.id == this.id) {
+                modulette.val += 1;
+                modulette.val = modulette.val % modulette.colLst.length;
+                document.getElementById(modulette.id).style.backgroundColor = modulette.colLst[modulette.val];
+            }
         }
     }
 }
+`
 
-function submit() {
+const submit = `
     let good = true;
     for (let i = 0; i < tile.modList.length; i++) {
         const element = tile.modList[i];
-        if (element.name == "input") {
+        if (element.name == 'input') {
             if (element.submitButton.id == this.id) {
                 for (let j = 0; j < element.inputModlets.length; j++) {
                     const inputModulet = element.inputModlets[j];
@@ -719,9 +673,9 @@ function submit() {
             }
         }
     }
-}
+`
 
-function colChange() {
+function colChangee() {
     for (let i = 0; i < tile.modList.length; i++) {
         const element = tile.modList[i];
         if (element.name == "input") {
@@ -972,35 +926,21 @@ function mainMenu() {
 
     display.appendChild(mainMenuDisplay.create())
 
-    let main = document.createElement("div");
-    main.classList.add("modulette");
-    let mainDiv1 = document.createElement("div");
-    mainDiv1.classList.add("menuDiv");
-    mainDiv1.classList.add("flexItem");
-    let button1 = document.createElement("button");
-    button1.type = "button";
-    button1.innerHTML = "Demo";
-    button1.classList.add("menuButton");
-    button1.onclick = function () { startDemo() };
-    mainDiv1.appendChild(button1);
-
-    let main2 = document.createElement("div");
-    main2.classList.add("modulette");
-    let mainDiv2 = document.createElement("div");
-    mainDiv2.classList.add("menuDiv");
-    mainDiv2.classList.add("flexItem");
-    let button2 = document.createElement("button");
-    button2.type = "button";
-    button2.innerHTML = "Story 1";
-    button2.classList.add("menuButton");
-    button2.onclick = function () { startStory1() };
-    mainDiv2.appendChild(button2);
-
-    main.appendChild(mainDiv1);
-    main2.appendChild(mainDiv2);
-
-    display.appendChild(main);
-    display.appendChild(main2);
+    display.innerHTML += 
+    `<div class="modulette">
+        <div class="menuDiv flexItem">
+            <button type="button" class="menuButton" onclick="startDemo()">
+            Demo
+            </button>
+        </div>
+    </div>
+    <div class="modulette">
+        <div class="menuDiv flexItem">
+            <button type="button" class="menuButton" onclick="startStory1()">
+            Story 1
+            </button>
+        </div>
+    </div>`
 }
 
 
