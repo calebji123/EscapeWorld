@@ -1,0 +1,382 @@
+{
+   "Title": "NEW",
+   "AREAS": [
+      "&#9968; NEW COLLEGE &#9968;"
+   ],
+   "content": {
+      "CODE": {
+         "area": 1,
+         "links": {
+            "down": {
+               "lock": false,
+               "code": "NEW1"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "locke": false,
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Welcome to NEW COLLEGE ORIENTATION"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Why attend Orientation Week?",
+                        "Transitioning to university can be both exciting and intimidating."
+                     ]
+                  ],
+                  [
+                     "Title",
+                     [
+                        "CLICK TO REGISTER"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "NEW1": {
+         "area": 1,
+         "links": {
+            "up": {
+               "lock": false,
+               "code": "CODE"
+            },
+            "down": {
+               "lock": true,
+               "code": "AMOG"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "First Search Result"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "New College Orientation is a 6 day program made up of a collection of academic and social events designed to help you adjust in your transition to university student life!"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "New College",
+                        "We are thrilled to announce that the theme for orientation 2022 is …… (DRUM ROLL PLEASE)…..NEW TIDES!!!"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Char",
+                     [
+                        "T"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "I"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "D"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "E"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "S"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     [
+                        1,
+                        [
+                           2,
+                           3
+                        ]
+                     ],
+                     [
+                        2,
+                        0,
+                        2
+                     ]
+                  ],
+                  [
+                     "AMOG"
+                  ]
+               ]
+            },
+            {
+               "name": "Text",
+               "lock": true,
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Orientation helps make your transition a little easier and a lot more fun!"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "AMOG": {
+         "area": 1,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "ART1"
+            },
+            "down": {
+               "lock": true,
+               "code": "GRP3"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Welcome to  NEW COLLEGE ORIENTATION"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "Be sure to follow us!"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Instagram",
+                        "@ncorientation"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Facebook",
+                        "facebook.com/newcollegeorientation"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     [
+                        "@ncorientation",
+                        "",
+                        true
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707",
+                           "#ffffff"
+                        ],
+                        2,
+                        0
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707",
+                           "#ffffff"
+                        ],
+                        5,
+                        0
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     [
+                        1,
+                        [
+                           2,
+                           4
+                        ]
+                     ]
+                  ],
+                  [
+                     "GRP3"
+                  ]
+               ]
+            }
+         ]
+      },
+      "GRP3": {
+         "area": 1,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "AGT2"
+            },
+            "down": {
+               "lock": true,
+               "code": "YAY4"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Group Time"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "(Quad)",
+                        "9:30 am - 11:30 am"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Sex Ed Disco",
+                        "10:00 am - "
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Char",
+                     [
+                        "1"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "1"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "3"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "0"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     1,
+                     [
+                        3,
+                        4
+                     ]
+                  ],
+                  [
+                     "END1"
+                  ]
+               ]
+            }
+         ]
+      },
+      "END1": {
+         "area": 1,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "GRP3"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "New Students Guide!"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "We are so pleased that you’ve decided to make New College your home during your university years. You’re about to embark on an exciting and fulfilling journey here at the University of Toronto, and some of the most memorable years of your life will be spent here at New. You’ll have the opportunity to explore new ways of thinking and expand your understanding of the world around you."
+                     ]
+                  ]
+               ]
+            }
+         ]
+      }
+   }
+}

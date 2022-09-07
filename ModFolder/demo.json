@@ -1,0 +1,417 @@
+{
+   "Title": "demo",
+   "AREAS": [
+      "&#9968; Intro Hills &#9968;",
+      "&#127794; Forest of Trials &#127794;",
+      "&#9889; Thunderous Plains &#9889;",
+      "&#9970; Hopeful Paradise &#9970;"
+   ],
+   "content": {
+      "CODE": {
+         "area": 1,
+         "links": {
+            "down": {
+               "lock": false,
+               "code": "ART1"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Welcome to Escape World Demo"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "An old man is seated in a ruined town. Around, talls hills peak towards the sky."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Old man",
+                        "Greetings weary traveller. It must have been a long journey to arrive at lands like these."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Old man",
+                        "I assure you, there is only a little travel left to go until paradise. Go forth, stay strong. The adventure is yours to take."
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "Newly envigored, you continue your journey."
+                     ]
+                  ],
+                  [
+                     "Title",
+                     [
+                        "Press the arrow below to continue"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "ART1": {
+         "area": 1,
+         "links": {
+            "up": {
+               "lock": false,
+               "code": "CODE"
+            },
+            "down": {
+               "lock": true,
+               "code": "AGT2"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Bridge of Drowsiness"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "You try to cross a bridge, but a troll blocks your way. With it are two blankets and a pillow."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Troll",
+                        "I need sleep! ooga booga willy wonka! Give me a tasty code for me to sleep, or else no one passes this bridge!"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Char",
+                     [
+                        "A"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "R"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "T"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "1"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     [
+                        1,
+                        [
+                           2,
+                           3
+                        ]
+                     ],
+                     [
+                        2,
+                        0,
+                        2
+                     ]
+                  ],
+                  [
+                     "AGT2"
+                  ]
+               ]
+            },
+            {
+               "name": "Text",
+               "lock": true,
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "The troll is satisfied. Onwards!"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "AGT2": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "ART1"
+            },
+            "down": {
+               "lock": true,
+               "code": "GPR3"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Trove of Tricky Trees"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "A Group  of trees surround you, demanding that you solve their tricky little puzzle before you can pass. They tell you to remember this monologue:"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Trees",
+                        "HELLO traveller. i hate capitals. ottawa and washington DC? wouldn't it be nice if we could replace capitals with BLUE and YELLOW? would be much more pleasing to the eye."
+                     ]
+                  ],
+                  [
+                     "Title",
+                     [
+                        "Scroll down"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     [
+                        "Hello",
+                        "",
+                        true
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        2,
+                        0
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        4,
+                        0
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     [
+                        1,
+                        [
+                           2,
+                           4
+                        ]
+                     ]
+                  ],
+                  [
+                     "GPR3"
+                  ]
+               ]
+            }
+         ]
+      },
+      "GPR3": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "AGT2"
+            },
+            "down": {
+               "lock": true,
+               "code": "YAY4"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "A Rickety Shack"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Man",
+                        "HEY YOU TRAVELLER! I really need help with this puzzle! My wife says that I would not get any dinner if its not finished. Like I really need it done. Like so badly that I won't let you continue until you help me."
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "Help this man get his dinner."
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        1,
+                        0
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        3,
+                        0
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        0,
+                        0
+                     ]
+                  ],
+                  [
+                     "Char",
+                     [
+                        "3"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true
+                     ]
+                  ]
+               ],
+               "extra": [
+                  [
+                     1,
+                     [
+                        3,
+                        4
+                     ]
+                  ],
+                  [
+                     "YAY4"
+                  ]
+               ]
+            }
+         ]
+      },
+      "YAY4": {
+         "area": 4,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "GPR3"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Welcome to Paradise!"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "Thank you for playing the demo! Contact me with more ideas. First story will be out soon!"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      }
+   }
+}
