@@ -70,6 +70,7 @@ class DTile {
         areaName.innerHTML = this.title;
         filler.innerHTML = "";
 
+
         let first = true;
         for (let i = 0; i < this.modList.length; i++) {
             const modules = this.modList[i];
