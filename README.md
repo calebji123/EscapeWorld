@@ -1,7 +1,7 @@
 # EscapeWorld
 🔥🔥🔥[NEW UPDATES SOON]
-+ TREE STRUCTURE
-+ JSON Files
++ New Story Drop
++ Upload Custom Story
 
 👍 -  Thumbs up and favorite for more updates!
 
