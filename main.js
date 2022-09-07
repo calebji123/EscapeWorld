@@ -12,6 +12,7 @@ var downArrow = document.getElementById("downArrow");
 var body = document.getElementsByName("body");
 
 
+
 // vars
 var mapx;
 var mapy;
