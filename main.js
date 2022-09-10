@@ -71,7 +71,6 @@ class DTile {
         areaName.innerHTML = this.title;
         filler.innerHTML = "";
 
-
         let first = true;
         for (let i = 0; i < this.modList.length; i++) {
             const modules = this.modList[i];
@@ -117,9 +116,17 @@ async function loadStory(file) {
                 modlets.push(new ml(modlet[0] + i, ...modlet[1]))
             }
 
-            let m = eval(mod.name + "Mod")
-            let state = mod["lock"] || false
-            let extra = mod["extra"] || []
+        this.inputModlets = [];
+        this.submitButton;
+        for (let i = 0; i < this.modletLst.length; i++) {
+            const element = this.modletLst[i];
+            if (element.name != "submit") {
+                this.inputModlets.push(element);
+            } else {
+                this.submitButton = element
+            }
+        }
+    }
 
             mods.push(new m(state, mod.name + o, modlets, ...extra))
         }
@@ -277,7 +284,6 @@ function unlock(obj) {
         default:
             break;
     }
-}
 
 
 
@@ -344,6 +350,14 @@ function clickArrow(dir) {
         update(tiles[tile.neighbors[dir].code]);
     }
 
+function testPlace(x, y) {
+    if (x >= 0 && x < mapy) {
+        if (y >= 0 && y < mapx) {
+            return map[x][y]
+        }
+        return -1
+    }
+    return -1
 }
 
 
