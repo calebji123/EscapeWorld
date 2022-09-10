@@ -1,0 +1,56 @@
+{Title:string title, AREAS:string[] areas, settings:Object settings, content:DTile[] story}
+
+Title - The title
+
+AREAS - a list of all areas in the map
+
+settings - technical settings
+    {START:string startCode}
+
+    START - the first loaded tile
+
+content - the tile set for this map
+    DTile - a single tile
+        {area:int areaCode, links:Object links, modules:module[] mods}
+
+        area - the first title of the tile
+
+        links - 4 cardinal arrows that allow travel
+            {<dir>: Object direction}
+
+            <direction> - which direction the arrow appears
+                {lock:boolean isLocked = false, code:string code}
+
+                lock - whether this arrow is availible
+
+                code - code of the next tile
+
+        modules:
+            Text - module that handles text
+                {name:"Text", modlets: modlet[] modletlist}
+
+                Title - large text
+                    ["Title", string text]
+
+                Para - paragraph style
+                    ["Para", string text]
+
+                Dia - dialogue
+                    ["Dia", string character, string speech]
+
+            Input - module that handles program interactables
+                {name:"Input", modlets: modlet[] modletlist}
+
+                Char - character input + answer checking
+                    ["Char", string answer, string default]
+                    
+                Word - string input + answer checking
+                    ["Word", string answer, string placeholder, boolean oneWord]
+
+                Col - color cycler + answer checking
+                    ["Col", string[] colLst, int answerIndex, int valueIndex]
+
+                Submit - submit button
+                    ["Submit", string buttonName, boolean answerIsLocal]
+            
+            

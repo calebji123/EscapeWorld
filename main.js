@@ -100,7 +100,10 @@ async function loadStory(file) {
     const json = await fetch(file)
         .then(response => response.json())
     const areas = json.AREAS;
-    let story = []
+    let story = {}
+    story["Title"] = json.Title;
+    story["settings"] = json.settings;
+    story["Tmap"] = {};
     Object.entries(json.content).forEach(([code, cont]) => {
         let mods = []
 
@@ -121,8 +124,10 @@ async function loadStory(file) {
             mods.push(new m(state, mod.name + o, modlets, ...extra))
         }
 
-        story.push(new DTile(cont.links, code, areas[cont.area - 1], mods));
-    });
+        story.Tmap[code] = new DTile(cont.links, code, areas[cont.area - 1], mods);
+    })
+    
+    console.log(story)
     return story;
 }
 
@@ -177,28 +182,26 @@ for (let i = 0; i < tile.modList.length; i++) {
 }
 `
 
-const submit = `
-    let good = true;
-    for (let i = 0; i < tile.modList.length; i++) {
-        const element = tile.modList[i];
-        if (element.name == 'input') {
-            if (element.submitButton.id == this.id) {
-                for (let j = 0; j < element.inputModlets.length; j++) {
-                    const inputModulet = element.inputModlets[j];
-                    console.log(inputModulet);
-                    if (!inputModulet.check()) {
-                        good = false;
-                    }
-                }
-                if (good && !element.submitButton.complete) {
-                    element.complete()
-                } else {
-                    element.fail()
-                }
-            }
-        }
-    }
-`
+// let good = true;
+//     for (let i = 0; i < tile.modList.length; i++) {
+//         const element = tile.modList[i];
+//         if (element.name == 'input') {
+//             if (element.submitButton.id == this.id) {
+//                 for (let j = 0; j < element.inputModlets.length; j++) {
+//                     const inputModulet = element.inputModlets[j];
+//                     console.log(inputModulet);
+//                     if (!inputModulet.check()) {
+//                         good = false;
+//                     }
+//                 }
+//                 if (good && !element.submitButton.complete) {
+//                     element.complete()
+//                 } else {
+//                     element.fail()
+//                 }
+//             }
+//         }
+//     }
 
 function changeFocus(that, fwd) {
     let all = document.getElementsByClassName("charInp");
@@ -220,26 +223,59 @@ function changeFocus(that, fwd) {
 }
 
 //add modules or unlock tiles
-function addNew(lst) {
-    for (let i = 0; i < lst.length; i++) {
-        const element = lst[i];
-        switch (element[0]) {
-            case 1:
-                //unlock(element[1][0], element[1][1]);
-                break;
-            case 2:
-                if (element[1] == 0) {
-                    tile.modList[element[2]].locked = false;
-                }
-                else {
-                    console.log(element[1][0], element[1][1], infoArray[element[1][0]][element[1][1]])
-                    infoArray[element[1][0]][element[1][1]].modList[element[2]].locked = false;
+function unlock(obj) {
+    console.log(obj.type)
+    let tar = "forreal"
+    switch (obj.type) {
+        case 'c':
+            tar = obj.c.split('-');
+            tar[0] = tiles[tar[0]]
+            tar[1] = tiles[tar[1]]
+            
 
+            for (const i in tar[0].neighbors) {
+                
+                if (tar[0].neighbors[i] && tar[0].neighbors[i].code == tar[1].code) {
+                    tar[0].neighbors[i].lock = false;
+                    
+                    
+                    if (obj.backlink==null || obj.backlink) {
+                        let link = tiles[tar[0].neighbors[i].code];
+                        for (const j in tar[1].neighbors) {
+                            console.log(tar[1].neighbors, tar[0].code)
+                            if (tar[1].neighbors[j] && tar[1].neighbors[j].code == tar[0].code) {
+                                tar[1].neighbors[j].lock = false;
+                            }
+                        }
+                    }
                 }
-                break;
-            default:
-                break;
-        }
+            }
+            break;
+        case 'a':
+            tar = tiles[obj.c];
+            for (const i in tar.neighbors) {
+                if (tar.neighbors[i]) {
+                    tar.neighbors[i].lock = false;
+                    if (obj.backlink==null || obj.backlink) {
+                        let link = tiles[tar.neighbors[i].code];
+                        Object.entries(link.neighbors).forEach(([key, info]) => {
+                            if (info && info.code == tar.code) {
+                            link.neighbors[key].lock = false;
+                        }
+                        });
+                    }
+                }
+            }
+            break;
+        case 'm':
+            tar = obj.c.split('-');
+            let mods = tar[1].split(',')
+            for (let i = 0; i < mods.length; i++) {
+                tiles[tar[0]].modList[mods[i]].locked = false;                
+            }
+            break;
+        default:
+            break;
     }
 }
 
@@ -305,7 +341,7 @@ function checkKey(e) {
 
 function clickArrow(dir) {
     if (tile.neighbors[dir] != null && !tile.neighbors[dir].lock) {
-        update(tiles.find(obj => obj.code == tile.neighbors[dir].code));
+        update(tiles[tile.neighbors[dir].code]);
     }
 
 }
@@ -334,15 +370,15 @@ function update(tar) {
     changeArrowState(a.down != null && !a.down.lock, downArrow);
     changeArrowState(a.left != null && !a.left.lock, leftArrow);
     changeArrowState(a.right != null && !a.right.lock, rightArrow);
-
 }
 
 
 async function startStory(filePath) {
     display.innerHTML = "";
-    tiles = await loadStory(filePath);
+    let story = await loadStory(filePath)
+    tiles = story.Tmap;
     console.log(tiles)
-    update(tiles[0]);
+    update(tiles[story.settings.START]);
 }
 
 
