@@ -116,24 +116,15 @@ async function loadStory(file) {
                 modlets.push(new ml(modlet[0] + i, ...modlet[1]))
             }
 
-        this.inputModlets = [];
-        this.submitButton;
-        for (let i = 0; i < this.modletLst.length; i++) {
-            const element = this.modletLst[i];
-            if (element.name != "submit") {
-                this.inputModlets.push(element);
-            } else {
-                this.submitButton = element
-            }
-        }
-    }
-
+            let m = eval(mod.name + "Mod")
+            let state = mod["lock"] || false
+            let extra = mod["extra"] || []
             mods.push(new m(state, mod.name + o, modlets, ...extra))
         }
 
         story.Tmap[code] = new DTile(cont.links, code, areas[cont.area - 1], mods);
     })
-    
+
     console.log(story)
     return story;
 }
@@ -238,15 +229,15 @@ function unlock(obj) {
             tar = obj.c.split('-');
             tar[0] = tiles[tar[0]]
             tar[1] = tiles[tar[1]]
-            
+
 
             for (const i in tar[0].neighbors) {
-                
+
                 if (tar[0].neighbors[i] && tar[0].neighbors[i].code == tar[1].code) {
                     tar[0].neighbors[i].lock = false;
-                    
-                    
-                    if (obj.backlink==null || obj.backlink) {
+
+
+                    if (obj.backlink == null || obj.backlink) {
                         let link = tiles[tar[0].neighbors[i].code];
                         for (const j in tar[1].neighbors) {
                             console.log(tar[1].neighbors, tar[0].code)
@@ -263,12 +254,12 @@ function unlock(obj) {
             for (const i in tar.neighbors) {
                 if (tar.neighbors[i]) {
                     tar.neighbors[i].lock = false;
-                    if (obj.backlink==null || obj.backlink) {
+                    if (obj.backlink == null || obj.backlink) {
                         let link = tiles[tar.neighbors[i].code];
                         Object.entries(link.neighbors).forEach(([key, info]) => {
                             if (info && info.code == tar.code) {
-                            link.neighbors[key].lock = false;
-                        }
+                                link.neighbors[key].lock = false;
+                            }
                         });
                     }
                 }
@@ -278,12 +269,13 @@ function unlock(obj) {
             tar = obj.c.split('-');
             let mods = tar[1].split(',')
             for (let i = 0; i < mods.length; i++) {
-                tiles[tar[0]].modList[mods[i]].locked = false;                
+                tiles[tar[0]].modList[mods[i]].locked = false;
             }
             break;
         default:
             break;
     }
+}
 
 
 
@@ -350,14 +342,15 @@ function clickArrow(dir) {
         update(tiles[tile.neighbors[dir].code]);
     }
 
-function testPlace(x, y) {
-    if (x >= 0 && x < mapy) {
-        if (y >= 0 && y < mapx) {
-            return map[x][y]
+    function testPlace(x, y) {
+        if (x >= 0 && x < mapy) {
+            if (y >= 0 && y < mapx) {
+                return map[x][y]
+            }
+            return -1
         }
         return -1
     }
-    return -1
 }
 
 
