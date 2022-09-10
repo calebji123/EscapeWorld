@@ -6,6 +6,9 @@
       "&#9889; Thunderous Plains &#9889;",
       "&#9970; Hopeful Paradise &#9970;"
    ],
+   "settings":{
+      "START":"CODE"
+   },
    "content": {
       "CODE": {
          "area": 1,
@@ -65,7 +68,7 @@
          "area": 1,
          "links": {
             "up": {
-               "lock": false,
+               "lock": true,
                "code": "CODE"
             },
             "down": {
@@ -95,6 +98,14 @@
                         "Troll",
                         "I need sleep! ooga booga willy wonka! Give me a tasty code for me to sleep, or else no one passes this bridge!"
                      ]
+                  ]
+               ],
+               "extra":[
+                  [
+                     {
+                        "type":"m",
+                        "c":"ART1-2"
+                     }
                   ]
                ]
             },
@@ -129,27 +140,18 @@
                      "Submit",
                      [
                         "submit",
-                        true
-                     ]
-                  ]
-               ],
-               "extra": [
-                  [
-                     [
-                        1,
+                        true,
                         [
-                           2,
-                           3
+                           {
+                              "answers":["a", null, null, null],
+                              "unlocks":[{"type":"a", 
+                              "c":"ART1", "backlink":true},
+                              {"type":"m", 
+                              "c":"ART1-2"}]
+                           }
+     
                         ]
-                     ],
-                     [
-                        2,
-                        0,
-                        2
                      ]
-                  ],
-                  [
-                     "AGT2"
                   ]
                ]
             },
@@ -259,16 +261,7 @@
                ],
                "extra": [
                   [
-                     [
-                        1,
-                        [
-                           2,
-                           4
-                        ]
-                     ]
-                  ],
-                  [
-                     "GPR3"
+                     {}
                   ]
                ]
             }

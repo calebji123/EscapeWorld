@@ -14,7 +14,10 @@ class TextMod {
    create() {
       if (this.firstLoad) {
          this.firstLoad = false;
-         addNew(this.loadLst);
+         for (let i = 0; i < this.loadLst.length; i++) {
+            unlock(this.loadLst[i]);
+            
+         }
       }
       let out = document.createElement("div")
       out.classList.add("flexItem", "textModule")
@@ -36,23 +39,21 @@ class TextMod {
 
 //input module
 class InputMod {
-   constructor(state, id, modletLst, cpltList, unlocks) {
+   constructor(state, id, modletLst) {
       this.name = "input";
       this.locked = admin ? false : state;
       this.modletLst = modletLst;
       this.id = id;
-      this.cpltList = cpltList;
-      this.unlocks = unlocks;
       this.htmlElem;
-
       this.inputModlets = [];
-      this.submitButton;
+      this.submitModlets;
       for (let i = 0; i < this.modletLst.length; i++) {
          const element = this.modletLst[i];
          if (element.name != "submit") {
             this.inputModlets.push(element);
          } else {
-            this.submitButton = element
+            this.submitModlets = element
+            element.inputMod = this;
          }
       }
    }
@@ -70,22 +71,10 @@ class InputMod {
    }
 
    complete() {
-      addNew(this.cpltList);
-      this.submitButton.complete = true;
+      //addNew(this.cpltList);
+      //this.submitButton.complete = true;
       console.log(this)
-      for (const x in tile.neighbors) {
-         if (tile.neighbors[x] && this.unlocks.includes(tile.neighbors[x].code)) {
-            tile.neighbors[x].lock = false;
-
-            //go from code to opposite tile back to original tile
-            let link = tiles.find(obj => obj.code == tile.neighbors[x].code);
-            Object.entries(link.neighbors).forEach(([key, info]) => {
-               if (info && info.code == tile.code) {
-                  link.neighbors[key].lock = false;
-               }
-            });
-         }
-      }
+      
       update(tile);
       console.log('unlocked^^')
       display.scroll({ top: 150, behavior: "smooth" });
@@ -94,12 +83,22 @@ class InputMod {
 
    fail() {
       document.getElementById(this.id).classList.add("shaker");
-      this.submitButton.complete = false;
+      //this.submitButton.complete = false;
       let that = this;
       setTimeout(function () {
          document.getElementById(that.id).classList.remove("shaker");
       }, 500);
 
+   }
+
+   answers() {
+      let r = []
+      for (let i = 0; i < this.inputModlets.length; i++) {
+         const item = this.inputModlets[i];
+         r.push(item.check())
+      }
+
+      return r
    }
 
    clear() {
@@ -222,10 +221,9 @@ class DiaModlet {
 
 //character input modulette
 class CharModlet {
-   constructor(id, ans, val = "") {
+   constructor(id, val = "") {
       this.name = "char";
       this.id = id;
-      this.ans = ans.toUpperCase();
       this.val = val.toUpperCase();
    }
 
@@ -242,18 +240,17 @@ class CharModlet {
    }
 
    check() {
-      return this.ans == document.getElementById(this.id).value;
+      return document.getElementById(this.id).value;
    }
 }
 
 //word input modulette
 class WordModlet {
-   constructor(id, ans, plc, oneWord) {
+   constructor(id, plc, val, oneWord) {
       this.name = "word";
       this.id = id;
-      this.ans = ans.toUpperCase();
       this.plc = plc;
-      this.val = "";
+      this.val = val? val:"";
       this.oneWord = oneWord;
    }
 
@@ -270,17 +267,16 @@ class WordModlet {
       return main;
    }
    check() {
-      return this.ans == document.getElementById(this.id).value;
+      return document.getElementById(this.id).value;
    }
 }
 
 //colour button Modulette
 class ColModlet {
-   constructor(id, colLst, ansI, valI) {
+   constructor(id, colLst, valI) {
       this.name = "col";
       this.id = id;
       this.colLst = colLst;
-      this.ans = ansI;
       this.val = valI;
    }
 
@@ -300,33 +296,59 @@ class ColModlet {
    }
 
    check() {
-      return this.ans == this.val;
+      return this.val;
    }
 }
 
 //submit button modulette
 class SubmitModlet {
-   constructor(id, buttonName, local) {
+   constructor(id, buttonName, local, interactions) {
       this.name = "submit";
       this.id = id;
+      this.interactions = interactions;
       this.buttonName = (buttonName || "submit").toUpperCase();
       this.local = local;
+      this.inputMod = null;
       this.complete = false;
 
    }
 
    create() {
-      let main = document.createElement("div");
-      main.classList.add("modulette");
-      main.innerHTML = `
-       <div class="submitInpDiv flexItem">
-           <input type="button" class="submitInp" onclick="${submit}" id="${this.id}"
-           value="${this.buttonName} ${this.complete ? '✓' : (this.local ? '🍃' : '🍂')}">
-           </input>
+      
+      let main = reac(`
+      <div class="modulette">
+         <div class="submitInpDiv flexItem">
+            <input type="button" class="submitInp" id="${this.id}" 
+            value="${this.buttonName} ${this.complete ? '✓' : (this.local ? '🍃' : '🍂')}">
+            </input>
+         </div>
        </div>
-       `
+       `)
+       main.getElementsByClassName("submitInp")[0].addEventListener("click", this.check.bind(this))
+       return main
 
-      return main;
+   }
+
+   check() {
+      let inputs = this.inputMod.answers();
+      
+      for (let i = 0; i < this.interactions.length; i++) {
+         const ans = this.interactions[i];
+         let fr = true
+         for (let j = 0; j < ans.answers.length; j++) {
+            if (ans.answers[j]!=null && ans.answers[j].toUpperCase()!=inputs[j]) {
+               fr = false
+            }
+         }
+         if (fr) {
+            for (let k = 0; k < ans.unlocks.length; k++) {
+               unlock(ans.unlocks[k])
+            }
+            this.inputMod.complete()
+         } else {
+            this.inputMod.fail()
+         }
+      }
 
    }
 }
