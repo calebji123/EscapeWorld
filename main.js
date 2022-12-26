@@ -1,5 +1,6 @@
 'use strict';
 
+
 // HTML elems
 var display = document.getElementById("display");
 var codeNum = document.getElementById("codeNum");
@@ -46,6 +47,7 @@ class DTile {
         this.code = code;
         this.title = title;
         this.modList = modList;
+        this.firstLoad = false;
 
         this.neighbors = {
             ...{
@@ -62,32 +64,47 @@ class DTile {
     updateDisplay() {
         let divider = reac(`
         <div class="dividerDiv">
-            <img src="https://cdn.glitch.global/321b8c55-4809-4625-b3a3-f0b07719b7ad/divider.png?v=1662482099988" class="dividerImg">
+            <img src="/images/divider.png" class="dividerImg">
             </img>
         </div>
         `)
 
         codeNum.innerHTML = this.code;
         areaName.innerHTML = this.title;
-        filler.innerHTML = "";
+        let home = reac(`
+        <div>
+        <div class="homeButton">
+            &#127968;
+        </div>
+        </div>
+        `)
+        console.log(divider, divider.getElementsByClassName("dividerImg"))
+        home.getElementsByClassName("homeButton")[0].addEventListener("click", mainMenu)
+        filler.innerHTML = ""
+        filler.appendChild(home);
+
 
         let first = true;
         for (let i = 0; i < this.modList.length; i++) {
-            const modules = this.modList[i];
-            if (!modules.locked) {
+            const module = this.modList[i];
+            if (!module.locked) {
                 if (!first) {
                     display.appendChild(divider.cloneNode(true));
                 } else {
                     first = false;
                 }
-                display.appendChild(modules.create());
+                display.appendChild(module.create());
             }
         }
     }
 
+    waitDisplay(queue) {
+        for (let i = 0; i < queue.length; i++) {
+            const module = queue[i];
+            toDisplay = module.create()
 
-
-
+        }
+    }
 }
 
 
@@ -113,6 +130,7 @@ async function loadStory(file) {
             for (let i = 0; i < mod.modlets.length; i++) {
                 let modlet = mod.modlets[i]
                 let ml = eval(modlet[0] + "Modlet")
+                console.log(modlet[0])
                 modlets.push(new ml(modlet[0] + i, ...modlet[1]))
             }
 
@@ -225,8 +243,8 @@ function unlock(obj) {
     console.log(obj.type)
     let tar = "forreal"
     switch (obj.type) {
-        case 'c':
-            tar = obj.c.split('-');
+        case "con":
+            tar = obj.code.split('-');
             tar[0] = tiles[tar[0]]
             tar[1] = tiles[tar[1]]
 
@@ -249,8 +267,8 @@ function unlock(obj) {
                 }
             }
             break;
-        case 'a':
-            tar = tiles[obj.c];
+        case "all":
+            tar = tiles[obj.code];
             for (const i in tar.neighbors) {
                 if (tar.neighbors[i]) {
                     tar.neighbors[i].lock = false;
@@ -265,8 +283,8 @@ function unlock(obj) {
                 }
             }
             break;
-        case 'm':
-            tar = obj.c.split('-');
+        case "mod":
+            tar = obj.code.split('-');
             let mods = tar[1].split(',')
             for (let i = 0; i < mods.length; i++) {
                 tiles[tar[0]].modList[mods[i]].locked = false;
@@ -326,10 +344,7 @@ function checkKey(e) {
         for (let i = 0; i < tile.modList.length; i++) {
             const element = tile.modList[i];
             if (element.name == "input") {
-                if (element.submitButton.complete == false) {
-                    document.getElementById(element.submitButton.id).click();
-
-                }
+                document.getElementById(element.submitModlet.id).click();
             }
         }
 
@@ -396,6 +411,7 @@ async function readStoryRecord() {
 }
 
 
+
 async function mainMenu() {
     let storyRecord = await readStoryRecord();
 
@@ -407,7 +423,7 @@ async function mainMenu() {
     let mainMenuDisplay = new TextMod(false, "1", [
         new TitleModlet("1", "Select the story you wish to play.")
     ])
-
+    display.innerHTML = ""
     display.appendChild(mainMenuDisplay.create())
 
     Object.entries(storyRecord.stories).forEach(([title, filename]) => {

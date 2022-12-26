@@ -6,8 +6,8 @@
       "&#9889; Thunderous Plains &#9889;",
       "&#9970; Hopeful Paradise &#9970;"
    ],
-   "settings":{
-      "START":"CODE"
+   "settings": {
+      "START": "CODE"
    },
    "content": {
       "CODE": {
@@ -68,7 +68,7 @@
          "area": 1,
          "links": {
             "up": {
-               "lock": true,
+               "lock": false,
                "code": "CODE"
             },
             "down": {
@@ -99,14 +99,6 @@
                         "I need sleep! ooga booga willy wonka! Give me a tasty code for me to sleep, or else no one passes this bridge!"
                      ]
                   ]
-               ],
-               "extra":[
-                  [
-                     {
-                        "type":"m",
-                        "c":"ART1-2"
-                     }
-                  ]
                ]
             },
             {
@@ -114,27 +106,19 @@
                "modlets": [
                   [
                      "Char",
-                     [
-                        "A"
-                     ]
+                     []
                   ],
                   [
                      "Char",
-                     [
-                        "R"
-                     ]
+                     []
                   ],
                   [
                      "Char",
-                     [
-                        "T"
-                     ]
+                     []
                   ],
                   [
                      "Char",
-                     [
-                        "1"
-                     ]
+                     []
                   ],
                   [
                      "Submit",
@@ -143,13 +127,23 @@
                         true,
                         [
                            {
-                              "answers":["a", null, null, null],
-                              "unlocks":[{"type":"a", 
-                              "c":"ART1", "backlink":true},
-                              {"type":"m", 
-                              "c":"ART1-2"}]
+                              "answers": [
+                                 "a",
+                                 "r",
+                                 "t",
+                                 "1"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "all",
+                                    "code": "ART1"
+                                 },
+                                 {
+                                    "type": "mod",
+                                    "code": "ART1-2"
+                                 }
+                              ]
                            }
-     
                         ]
                      ]
                   ]
@@ -218,8 +212,6 @@
                   [
                      "Word",
                      [
-                        "Hello",
-                        "",
                         true
                      ]
                   ],
@@ -233,7 +225,6 @@
                            "#8f1a9c",
                            "#f7e707"
                         ],
-                        2,
                         0
                      ]
                   ],
@@ -247,7 +238,6 @@
                            "#8f1a9c",
                            "#f7e707"
                         ],
-                        4,
                         0
                      ]
                   ],
@@ -255,13 +245,23 @@
                      "Submit",
                      [
                         "submit",
-                        true
+                        true,
+                        [
+                           {
+                              "answers": [
+                                 "hello",
+                                 2,
+                                 4
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "all",
+                                    "code": "AGT2"
+                                 }
+                              ]
+                           }
+                        ]
                      ]
-                  ]
-               ],
-               "extra": [
-                  [
-                     {}
                   ]
                ]
             }
@@ -317,7 +317,6 @@
                            "#8f1a9c",
                            "#f7e707"
                         ],
-                        1,
                         0
                      ]
                   ],
@@ -331,7 +330,6 @@
                            "#8f1a9c",
                            "#f7e707"
                         ],
-                        3,
                         0
                      ]
                   ],
@@ -345,34 +343,35 @@
                            "#8f1a9c",
                            "#f7e707"
                         ],
-                        0,
                         0
                      ]
                   ],
                   [
                      "Char",
-                     [
-                        "3"
-                     ]
+                     []
                   ],
                   [
                      "Submit",
                      [
                         "submit",
-                        true
+                        true,
+                        [
+                           {
+                              "answers": [
+                                 1,
+                                 3,
+                                 0,
+                                 "3"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "all",
+                                    "code": "GPR3"
+                                 }
+                              ]
+                           }
+                        ]
                      ]
-                  ]
-               ],
-               "extra": [
-                  [
-                     1,
-                     [
-                        3,
-                        4
-                     ]
-                  ],
-                  [
-                     "YAY4"
                   ]
                ]
             }

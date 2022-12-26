@@ -1,0 +1,29 @@
+#All whitespaces are cleared at the beginning and end of an item
+#| is an invisible character that stops whitespace clearing
+#place a | in front of a | to ignore that backspace
+#optional things can be omitted
+#to bypass an optional parameter: Word >> Hey >> >> false
+
+#tile parameters
+start >> boolean; #only one tile can have start set to true. 
+area >> number; #if area is an element of Areas list
+area-name >> name; #if area is another string
+direction >> code >> boolean; #last boolean being if it is locked. 
+
+#modlets
+#all modlets follow the formula: 
+name >> answer >> parameters;
+#Text modlets
+Title >> content;
+Para >> content;
+Dia >> speaker >> content;
+#input modlets
+Word >> answer >> placeholder >> boolean; #boolean states if it is restricted to one word. placeholder default is none. 
+Char >> answer >> placeholder; #placeholder default at none
+Col >> answer >> start >> col_list; #start default at 0, col list default at Colors or at built-in colors.
+Submit >> name >> boolean; #name default at "submit", boolean states isLocal which is default at true, option to be null (does not exist)
+#input parameters
+unlock >> options >> many options; 
+#options are formatted as CODE-CODE. The first code designates the start. Alone, it unlocks all paths from that tile.
+#CODE-number unlocks the # number module in CODE
+#CODE-CODE unlocks the singular connection between CODE and CODE

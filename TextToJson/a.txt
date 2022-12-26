@@ -1,0 +1,14 @@
+<i>;
+w false >> acid >> Base
+w false >> add >> Subtract
+w false >> apple >> Orange
+s 
+
+
+<t>;
+t Rapid Rivers;
+p The river turns into a rapid, the water flow intermittently interrupted by large rocks.;
+d Gilmore >> This is my favourite spot by the river. A nice place to ask you the second question: What is the name of this spot?;
+d Gilmore >> You know what, that's too easy. Give me the code for this spot as well.;
+</t>
+

@@ -1,0 +1,311 @@
+{
+   "Title": "Tutorial",
+   "AREAS": [
+      "&#x1F451; The King's Court &#x1F451;",
+      "&#127793; Plains of Acceptance &#127793;",
+      "&#x1F33F; Wandora's Woods &#x1F33F;",
+      "&#x1F333; Fiction's Forest &#x1F333;",
+      "&#x1F42E; Cilkin's Cow Ranch &#x1F42E;",
+      "&#x1F33E; Mannerson's Wheat Field &#x1F33E;",
+      "&#x1F332; Frightful Forest &#x1F332;",
+      "&#x1F6A7; Under Contruction &#x1F6A7;"
+   ],
+   "settings": {
+      "START": "STRT"
+   },
+   "content": {
+      "STRT": {
+         "area": 1,
+         "links": {
+            "down": {
+               "lock": false,
+               "code": "ABD1"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Before the Throne"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "King",
+                        "Adventurer, I have called you for a mission of utmost importance. The reward is 30 gold ducets. You have one task, go and defeat the evil wizard of the south."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "King",
+                        "Go now, make haste. The future of this kingdom rests on your hands."
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "ABD1": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": false,
+               "code": "STRT"
+            },
+            "down": {
+               "lock": true,
+               "code": "ABD2"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Para",
+                     [
+                        "You walk up to a sole shack built by a lake. On the porch is a grey old man glaring at you."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Old Man",
+                        "Oh another adventurer from the Kingdom eh? Many have come and never returned, perhaps I should do a thing or two to help prepare them better."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "Call me Gilmore. If you can't answer my questions, I won't be letting you pass. Deal?<br>First question: What is the name of this area?"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     [
+                        true,
+                        "Area"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true,
+                        [
+                           {
+                              "answers": [
+                                 "plains of acceptance"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "con",
+                                    "code": "ABD1-ABD2"
+                                 },
+                                 {
+                                    "type": "mod",
+                                    "code": "ABD1-2"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Text",
+               "lock": true,
+               "modlets": [
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "That was an easy one. Follow me."
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "ABD2": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "ABD1"
+            },
+            "down": {
+               "lock": true,
+               "code": "ADD4"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Rocky Riverbed"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "You follow Gilmore along a river. It's too deep to cross. Three weeping trees surround the area where you stop"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "This is my favourite spot by the river. A nice place to ask you the second question: What is the name of this tile?"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "You know what, that's too easy. Give me the code for this tile as well."
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     [
+                        false,
+                        "name"
+                     ]
+                  ],
+                  [
+                     "Char",
+                     []
+                  ],
+                  [
+                     "Char",
+                     []
+                  ],
+                  [
+                     "Char",
+                     []
+                  ],
+                  [
+                     "Char",
+                     []
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        true,
+                        [
+                           {
+                              "answers": [
+                                 "rocky riverbed",
+                                 "a",
+                                 "b",
+                                 "d",
+                                 "2"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "con",
+                                    "code": "ABD2-ADD4"
+                                 },
+                                 {
+                                    "type": "mod",
+                                    "code": "ABD2-3"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Text",
+               "lock": true,
+               "modlets": [
+                  [
+                     "Para",
+                     [
+                        "The codes and titles are the main identifiers of a tile. If you haven't caught on already, each place is called a tile. Let's head over to the next tile now."
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Text",
+               "lock": true,
+               "modlets": [
+                  [
+                     "Para",
+                     [
+                        "You search around the area for a piece of paper. You find it lodged into a tree root. The first two and only two words written on it are: 'GOOD JOB'."
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "ADD4": {
+         "area": 4,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "ABD2"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Rapid Rivers"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "The river turns into a rapid, the water flow intermittently interrupted by large rocks."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "This is my favourite spot by the river. A nice place to ask you the second question: What is the name of this spot?"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Gilmore",
+                        "You know what, that's too easy. Give me the code for this spot as well."
+                     ]
+                  ]
+               ]
+            }
+         ]
+      }
+   }
+}

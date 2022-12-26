@@ -16,8 +16,9 @@ class TextMod {
          this.firstLoad = false;
          for (let i = 0; i < this.loadLst.length; i++) {
             unlock(this.loadLst[i]);
-            
+
          }
+
       }
       let out = document.createElement("div")
       out.classList.add("flexItem", "textModule")
@@ -28,6 +29,13 @@ class TextMod {
          out.appendChild(modletHtml);
       }
       return out;
+   }
+
+   waitCreate() {
+      for (let i = 0; i < queue.length; i++) {
+         const module = queue[i];
+         toDisplay = module.create()
+      }
    }
 
    clear() {
@@ -46,13 +54,13 @@ class InputMod {
       this.id = id;
       this.htmlElem;
       this.inputModlets = [];
-      this.submitModlets;
+      this.submitModlet;
       for (let i = 0; i < this.modletLst.length; i++) {
          const element = this.modletLst[i];
          if (element.name != "submit") {
             this.inputModlets.push(element);
          } else {
-            this.submitModlets = element
+            this.submitModlet = element
             element.inputMod = this;
          }
       }
@@ -71,10 +79,7 @@ class InputMod {
    }
 
    complete() {
-      //addNew(this.cpltList);
-      //this.submitButton.complete = true;
       console.log(this)
-      
       update(tile);
       console.log('unlocked^^')
       display.scroll({ top: 150, behavior: "smooth" });
@@ -83,7 +88,6 @@ class InputMod {
 
    fail() {
       document.getElementById(this.id).classList.add("shaker");
-      //this.submitButton.complete = false;
       let that = this;
       setTimeout(function () {
          document.getElementById(that.id).classList.remove("shaker");
@@ -246,12 +250,12 @@ class CharModlet {
 
 //word input modulette
 class WordModlet {
-   constructor(id, plc, val, oneWord) {
+   constructor(id, oneWord, plc, val) {
       this.name = "word";
       this.id = id;
-      this.plc = plc;
-      this.val = val? val:"";
       this.oneWord = oneWord;
+      this.plc = plc ? plc : "";
+      this.val = val ? val : "";
    }
 
    create() {
@@ -309,34 +313,36 @@ class SubmitModlet {
       this.buttonName = (buttonName || "submit").toUpperCase();
       this.local = local;
       this.inputMod = null;
-      this.complete = false;
-
    }
 
    create() {
-      
+
       let main = reac(`
       <div class="modulette">
          <div class="submitInpDiv flexItem">
             <input type="button" class="submitInp" id="${this.id}" 
-            value="${this.buttonName} ${this.complete ? '✓' : (this.local ? '🍃' : '🍂')}">
+            value="${this.buttonName} ${this.local != null ? this.local ? '🍃' : '🍂' : null}">
             </input>
          </div>
        </div>
        `)
-       main.getElementsByClassName("submitInp")[0].addEventListener("click", this.check.bind(this))
-       return main
+      main.getElementsByClassName("submitInp")[0].addEventListener("click", this.check.bind(this))
+      return main
 
    }
 
    check() {
       let inputs = this.inputMod.answers();
-      
+
       for (let i = 0; i < this.interactions.length; i++) {
          const ans = this.interactions[i];
          let fr = true
          for (let j = 0; j < ans.answers.length; j++) {
-            if (ans.answers[j]!=null && ans.answers[j].toUpperCase()!=inputs[j]) {
+            let answer = ans.answers[j]
+            if (typeof (ans.answers[j]) == "string" || typeof (ans.answers[j]) == "char") {
+               answer = answer.toUpperCase()
+            }
+            if (answer != null && answer != inputs[j]) {
                fr = false
             }
          }

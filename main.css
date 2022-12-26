@@ -1,3 +1,50 @@
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+
 /* flexbox */
 
 body {
@@ -9,26 +56,12 @@ body {
     justify-content: space-evenly;
     align-items: stretch;
     align-content: stretch;
-    user-select:none;
+    user-select: none;
 }
 
 .shaker {
     animation: shake 0.5s;
 }
-
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
 
 br {
     display: block;
@@ -41,20 +74,37 @@ input {
 }
 
 ::-webkit-scrollbar {
-    width: 0; 
-    background: transparent;  /* Optional: just make scrollbar invisible */
+    width: 0;
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
 }
 
 p {
-    font-family:'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     font-size: 15px;
 }
 
 
-.flexItem{
+.flexItem {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.overrideUp {
+    align-items: end;
+}
+
+.overrideLeft {
+    justify-content: flex-end;
+}
+
+.overrideDown {
+    align-items: start;
+}
+
+.overrideRight {
+    justify-content: flex-start;
 }
 
 #flexUp {
@@ -69,7 +119,7 @@ p {
     order: 5;
 }
 
-#flexRight {   
+#flexRight {
     width: 20%;
     order: 4;
 }
@@ -97,20 +147,20 @@ p {
 }
 
 #upArrow {
-    transform: rotate(90deg); 
+    transform: rotate(-90deg);
 
 }
 
-/* #leftArrow {
-} */
+#leftArrow {
+    transform: rotate(180deg)
+}
 
 #downArrow {
-    transform: rotate(270deg);
+    transform: rotate(90deg);
 }
 
-#rightArrow {
-    transform: rotate(180deg);
-}
+/* #rightArrow {
+} */
 
 
 .disabled {
@@ -125,12 +175,34 @@ p {
     height: 500px;
     flex-wrap: wrap;
     align-content: flex-start;
+    position: relative;
+}
 
+#main:after {
+    content: '';
+    width: 90%;
+    height: 5%;
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(transparent, white);
+    z-index: 5;
+    text-align: center;
+}
+
+#main:before {
+    content: '';
+    width: 90%;
+    height: 5%;
+    position: absolute;
+    top: 41px;
+    background: linear-gradient(white, transparent);
+    z-index: 5;
+    text-align: center;
 }
 
 #display {
     width: 100%;
-    height: 90%;
+    height: 458px;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
@@ -140,8 +212,8 @@ p {
 /* menu select */
 .menuButton {
     outline: none;
-    font-family:'Courier New', Courier, monospace;
-    background-color:transparent;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: transparent;
     border: none;
     font-size: 20px;
     padding-top: 20px;
@@ -161,7 +233,7 @@ p {
 /* inside display */
 
 #header {
-    height: 8%;
+    height: 40px;
     width: 100%;
 }
 
@@ -185,12 +257,13 @@ p {
     border-bottom: solid black 1px;
 }
 
-#codeNum, #fillerFill {
+#codeNum,
+#fillerFill {
     font-size: 20px;
     font-weight: 500;
 }
 
-#areaName{ 
+#areaName {
     font-size: 20px;
     font-weight: 900;
 }
@@ -218,7 +291,7 @@ p {
     flex-wrap: wrap;
 }
 
-.modulette{
+.modulette {
     height: min-content;
 }
 
@@ -231,7 +304,7 @@ p {
     max-width: 40px;
     margin-top: 20px;
     margin-bottom: 40px;
-    border:none;
+    border: none;
     border-bottom: solid black 2px;
     outline: none;
     font-size: 30px;
@@ -263,7 +336,7 @@ p {
     background-color: white;
     border-radius: 25px;
     box-shadow: 0px 4px #888888;
-    outline:none;
+    outline: none;
 }
 
 
@@ -290,6 +363,7 @@ p {
     width: 500px;
     height: 50px;
 }
+
 .dispTitle {
     font-size: 20px;
     text-align: center;
@@ -336,5 +410,73 @@ p {
 .dispDiaPara {
     padding-left: 5px;
     min-width: 380px;
-    border-left:rgba(122, 122, 122, 0.5) 2px solid;
+    border-left: rgba(122, 122, 122, 0.5) 2px solid;
+}
+
+
+
+
+/*
+ * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
+ */
+ 
+ @media only screen {
+    #main {
+        transform: scale(0.4);
+    }
+}
+
+@media only screen and (min-width : 200px) {
+    #main {
+        transform: scale(0.4);
+    }
+}
+
+@media only screen and (min-width : 320px) {
+    #main {
+        transform: scale(0.6);
+    }
+}
+
+@media only screen and (min-width : 640px) {
+    #main {
+        transform: scale(0.8);
+    }
+}
+
+@media only screen and (min-width : 900px) {
+    #main {
+        transform: scale(1);
+    }
+}
+
+@media only screen {
+    #main {
+        transform: scale(0.4);
+    }
+}
+
+
+@media only screen and (min-height : 200px) {
+    #main {
+        transform: scale(0.4);
+    }
+}
+
+@media only screen and (min-height : 320px) {
+    #main {
+        transform: scale(0.6);
+    }
+}
+
+@media only screen and (min-height : 640px) {
+    #main {
+        transform: scale(0.8);
+    }
+}
+
+@media only screen and (min-height : 900px) {
+    #main {
+        transform: scale(1);
+    }
 }

@@ -1,0 +1,60 @@
+{
+   "Title": "Murder Mystery",
+   "Areas": [
+      "&#9968; Ruby Town &#9968;",
+      "&#127794; Rebellion Forest &#127794;",
+      "&#9889; Riveting Plains &#9889;",
+      "&#9970; Town Center &#9970;"
+   ],
+   "content": {
+      "AA11": {
+         "area": 1,
+         "links": {
+            "down": {
+               "lock": false,
+               "code": "AA12"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "Ruby Entrance"
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "A large ruby archway decorates the entrance to the town. Standing in the archway to greet you is a jubilant looking woman."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Sadie",
+                        "Hey there detective! Welcome to Ruby town! Oh boy do we got a problem for you! <b>Someone died and we do not know who.</b> So I hope you help us!"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Sadie",
+                        "Anyways, I have some clues for you! but before I give them to you, I need you to get to know the townspeople! Who would want a stranger solving their mysteries!?"
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Sadie",
+                        "First task: Go and find what Dave's favourite colour is!"
+                     ]
+                  ]
+               ]
+            }
+         ]
+      }
+   }
+}
