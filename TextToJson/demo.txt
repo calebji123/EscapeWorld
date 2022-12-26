@@ -1,98 +1,97 @@
-title >> demo
-areas >> [&#9968; Intro Hills &#9968;, &#127794; Forest of Trials &#127794;, &#9889; Thunderous Plains &#9889;, &#9970; Hopeful Paradise &#9970;]
-colors >> [#ff0000, #00ff00, #0000ff, #8f1a9c, #f7e707]
-local >> false
+title >> demo;
+areas >> [&#9968; Intro Hills &#9968;, &#127794; Forest of Trials &#127794;, &#9889; Thunderous Plains &#9889;, &#9970; Hopeful Paradise &#9970;];
+colors >> [#ff0000, #00ff00, #0000ff, #8f1a9c, #f7e707];
 
 <CODE>
-   start >> true
-   area >> 1
-   down >> ART1 >> locked
+   start;
+   area >> 1;
+   down >> ART1 >> locked;
 
    <text>
-   Title >> |   Welcome to Escape World Demo
-   Para >> An old man is seated in a ruined town. Around, talls hills peak towards the sky.
-   Dia >> Old man >> Greetings weary traveller. It must have been a long journey to arrive at lands like these.
+   Title >> |   Welcome to Escape World Demo;
+   Para >> An old man is seated in a ruined town. Around, talls hills peak towards the sky.;
+   Dia >> Old man >> Greetings weary traveller. It must have been a long journey to arrive at lands like these.;
    Dia >> Old man >> I assure you, there is only a little travel left to go until paradise.
-      Go forth, stay strong. The adventure is yours to take.
-   Para >> Newly envigored, you continue your journey.
-   Title >> Press the arrow below to continue
+      Go forth, stay strong. The adventure is yours to take.;
+   Para >> Newly envigored, you continue your journey.;
+   Title >> Press the arrow below to continue;
    </text>
 </CODE>
 
 <ART1>
-   area >> 1
-   up >> CODE
-   down >> AGT2 >> locked
+   area >> 1;
+   up >> CODE;
+   down >> AGT2 >> locked;
 
    <text>
-   Title >> Bridge of Drowsiness
-   Para >> You try to cross a bridge, but a troll blocks your way. With it are two blankets and a pillow.
-   Dia >> Troll >> I need sleep! ooga booga willy wonka! Give me a tasty code for me to sleep, or else no one passes this bridge!
+   Title >> Bridge of Drowsiness;
+   Para >> You try to cross a bridge, but a troll blocks your way. With it are two blankets and a pillow.;
+   Dia >> Troll >> I need sleep! ooga booga willy wonka! Give me a tasty code for me to sleep, or else no one passes this bridge!;
    </text>
 
    <input>
-   unlock >> ART1 >> ART1-2
-   Char >> a
-   Char >> r
-   Char >> t
-   Char >> 1
-   Submit
+   unlock >> ART1 >> ART1-2;
+   Char >> a;
+   Char >> r;
+   Char >> t;
+   Char >> 1;
+   Submit;
    </input>
 
    <text>
-   Title >> The troll is satisfied. Onwards!
+   Title >> The troll is satisfied. Onwards!;
    </text>
 
 <AGT2>
-   area >> 2
-   up >> ART1
-   down >> GPR3 >> locked
+   area >> 2;
+   up >> ART1;
+   down >> GPR3 >> locked;
 
    <text>
-   Title >> Trove of Tricky Trees
-   Para >> A Group  of trees surround you, demanding that you solve their tricky little puzzle before you can pass. They tell you to remember this monologue:
-   Dia >> Trees >> HELLO traveller. i hate capitals. ottawa and washington dc? wouldn't it be nice if we could replace capitals with BLUE and YELLOW? would be much more pleasing to the eye.
-   Title >> Scroll down
+   Title >> Trove of Tricky Trees;
+   Para >> A Group  of trees surround you, demanding that you solve their tricky little puzzle before you can pass. They tell you to remember this monologue:;
+   Dia >> Trees >> HELLO traveller. i hate capitals. ottawa and washington dc? wouldn't it be nice if we could replace capitals with BLUE and YELLOW? would be much more pleasing to the eye.;
+   Title >> Scroll down;
    </text>
 
    <input>
-   unlock >> AGT2
-   Word >> hello
-   Col >> 2
-   Col >> 4
-   Submit
+   unlock >> AGT2;
+   Word >> hello >> oneword;
+   Col >> 2;
+   Col >> 4;
+   Submit;
    </input>
 </AGT2>
 
 <GPR3>
-   area >> 3
-   up >> AGT2
-   down >> YAY4 >> locked
+   area >> 3;
+   up >> AGT2;
+   down >> YAY4 >> locked;
 
    <text>
-   Title >> A Rickety Shack
+   Title >> A Rickety Shack;
    Dia >> Man >> HEY YOU TRAVELLER! I really need help with this puzzle! My wife says that I would not get any dinner if its not finished. Like I really need it done. 
-      Like so badly that I won't let you continue until you help me.
-   Para >> Help this man get his dinner.
+      Like so badly that I won't let you continue until you help me.;
+   Para >> Help this man get his dinner.;
    </text>
 
    <input>
-   unlock >> GPR3
-   Col >> 1
-   Col >> 3
-   Col >> 0
-   Char >> 3
-   Submit
+   unlock >> GPR3;
+   Col >> 1;
+   Col >> 3;
+   Col >> 0;
+   Char >> 3;
+   Submit >> notlocal;
    </input>
 </GPR3>
 
 <YAY4>
-   area >> 4
-   up >> GPR3
+   area >> 4;
+   up >> GPR3;
 
    <text>
-   Title >> Welcome to Paradise!
-   Para >> Thank you for playing the demo! Contact me with more ideas. First story will be out soon!
+   Title >> Welcome to Paradise!;
+   Para >> Thank you for playing the demo! Contact me with more ideas. First story will be out soon!;
    </text>
 </YAY4>
 
