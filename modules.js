@@ -321,7 +321,7 @@ class SubmitModlet {
       <div class="modulette">
          <div class="submitInpDiv flexItem">
             <input type="button" class="submitInp" id="${this.id}" 
-            value="${this.buttonName} ${this.local != null ? this.local ? '🍃' : '🍂' : null}">
+            value="${this.buttonName} ${this.local != null ? this.local ? '🍃' : '🍂' :""}">
             </input>
          </div>
        </div>

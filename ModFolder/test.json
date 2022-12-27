@@ -1,0 +1,312 @@
+{
+   "Title": "   Test with all the features",
+   "AREAS": [
+      "&#9968; Intro Hills &#9968;",
+      "&#127794; Forest of Trials &#127794;",
+      "&#9889; Thunderous Plains &#9889;",
+      "&#9970; Hopeful Paradise &#9970;"
+   ],
+   "settings": {
+      "START": "0010"
+   },
+   "content": {
+      "0000": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": true,
+               "code": "1000"
+            },
+            "down": {
+               "lock": true,
+               "code": "0100"
+            },
+            "left": {
+               "lock": false,
+               "code": "0010"
+            },
+            "right": {
+               "lock": false,
+               "code": "0001"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "    I like chicken         "
+                     ]
+                  ],
+                  [
+                     "Para",
+                     [
+                        "Wowza such a long textWowza such a long textcrazy how it goes on yep."
+                     ]
+                  ],
+                  [
+                     "Dia",
+                     [
+                        "Man",
+                        "Yo wazzup"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Char",
+                     ["a"]
+                  ],
+                  [
+                     "Word",
+                     [
+                        true,
+                        "just type a"
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        false,
+                        [
+                           {
+                              "answers": [
+                                 "a",
+                                 "a"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "all",
+                                    "code": "0000"
+                                 },
+                                 {
+                                    "type": "mod",
+                                    "code": "0100-0"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "0100": {
+         "area": 2,
+         "links": {
+            "up": {
+               "lock": false,
+               "code": "0000"
+            },
+            "right": {
+               "lock": true,
+               "code": "1000"
+            }
+         },
+         "modules": [
+            {
+               "name": "Text",
+               "lock":true,
+               "modlets": [
+                  [
+                     "Title",
+                     [
+                        "poop"
+                     ]
+                  ]
+               ]
+            },
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     []
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        null,
+                        [
+                           {
+                              "answers": [
+                                 "yikes"
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "mod",
+                                    "code": "0010-0"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "1000": {
+         "area": 3,
+         "links": {
+            "down": {
+               "lock": false,
+               "code": "0000"
+            },
+            "left": {
+               "lock": true,
+               "code": "0100"
+            }
+         },
+         "modules": [
+            {
+               "name": "Input",
+               "modlets": [
+                  [
+                     "Word",
+                     [
+                        true
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#000",
+                           "#000",
+                           "#fff",
+                           "#00000",
+                           "#fff"
+                        ],
+                        0
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        4
+                     ]
+                  ],
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        0
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "submit",
+                        null,
+                        [
+                           {
+                              "answers": [
+                                 "Hey",
+                                 4,
+                                 2,
+                                 2
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "con",
+                                    "code": "0010-0100"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "0010": {
+         "area": 1,
+         "links": {
+            "left": {
+               "lock": true,
+               "code": "0100"
+            },
+            "right": {
+               "lock": false,
+               "code": "0000"
+            }
+         },
+         "modules": [
+            {
+               "name": "Input",
+               "lock":true,
+               "modlets": [
+                  [
+                     "Col",
+                     [
+                        [
+                           "#ff0000",
+                           "#00ff00",
+                           "#0000ff",
+                           "#8f1a9c",
+                           "#f7e707"
+                        ],
+                        0
+                     ]
+                  ],
+                  [
+                     "Submit",
+                     [
+                        "hey",
+                        true,
+                        [
+                           {
+                              "answers": [
+                                 2
+                              ],
+                              "unlocks": [
+                                 {
+                                    "type": "con",
+                                    "code": "0100-1000"
+                                 }
+                              ]
+                           }
+                        ]
+                     ]
+                  ]
+               ]
+            }
+         ]
+      },
+      "0001": {
+         "area": 2,
+         "links": {
+            "left": {
+               "lock": false,
+               "code": "0000"
+            }
+         },
+         "modules": [
+           
+         ]
+      }
+   }
+}

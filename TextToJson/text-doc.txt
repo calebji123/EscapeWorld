@@ -15,7 +15,7 @@
 title >> content
 areas >> list[content] #comma separated list. Whitespaces front and back cleared, but not in-between. 
 colors >> list[colors] #comma separated list. Colors written in hex.
-notlocal #default false. If true, every isLocal in submit is set to null by default
+nolocal #default local. If nolocal, every isLocal in submit is set to null by default. if notlocal, every islocal is set to false by default 
 
 #tile parameters
 start #only one tile can have start. Sets this to start. default is not set to start
@@ -43,7 +43,7 @@ Dia >> speaker >> content;
 Word >> answer >> placeholder >> oneword; #oneWord states if it is restricted to one word, default false. placeholder default is none. 
 Char >> answer >> placeholder; #placeholder default is none
 Col >> answer >> start >> col_list; #start default at 0, col list default at colors doc parameter.
-Submit >> name >> notlocal >> nolocal; #name default at "submit", notLocal sets local to false, nolocal sets it to be null (removes icon)
+Submit >> name >> notlocal; #name default at "submit", second parameter either local/notlocal/nolocal 
 
 
 #logs an error and stops parsing if catches an error, displaying the message and the line the error is on:
@@ -55,3 +55,4 @@ ERROR 05 Unexpected >>. Make sure correct content is placed after the >> continu
 ERROR 06 Expected >>. Make sure the required content for a parameter/modlet is given.
 ERROR 07 Incorrect content. Make sure the content following the >> continue symbol is in the correct form. 
 ERROR 08 Expected ;. Make sure the ; symbol follows every complete line unless splitting content.
+ERROR 09 Missing requried parameters.
