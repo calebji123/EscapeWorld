@@ -64,7 +64,7 @@ class DTile {
     updateDisplay() {
         let divider = reac(`
         <div class="dividerDiv">
-            <img src="/images/divider.png" class="dividerImg">
+            <img src="/Images/divider.png" class="dividerImg">
             </img>
         </div>
         `)
