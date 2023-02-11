@@ -79,11 +79,8 @@ class InputMod {
    }
 
    complete() {
-      console.log(this)
       update(tile);
-      console.log('unlocked^^')
-      display.scroll({ top: 150, behavior: "smooth" });
-
+      display.scroll({ top: 150, behavior: "smooth" })
    }
 
    fail() {

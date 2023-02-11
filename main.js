@@ -78,12 +78,9 @@ class DTile {
         </div>
         </div>
         `)
-        console.log(divider, divider.getElementsByClassName("dividerImg"))
         home.getElementsByClassName("homeButton")[0].addEventListener("click", mainMenu)
         filler.innerHTML = ""
         filler.appendChild(home);
-
-
         let first = true;
         for (let i = 0; i < this.modList.length; i++) {
             const module = this.modList[i];
@@ -102,7 +99,6 @@ class DTile {
         for (let i = 0; i < queue.length; i++) {
             const module = queue[i];
             toDisplay = module.create()
-
         }
     }
 }
@@ -315,6 +311,9 @@ document.onkeydown = checkKey;
 
 function checkKey(e) {
     e = e || window.event;
+    if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+        e.preventDefault();
+    }
     if (e.keyCode == '38') {
         // up arrow
         if (!upArrow.classList.contains("disabled")) {
@@ -384,8 +383,8 @@ function update(tar) {
     }
     //console.log(tar)
     tile = tar
+    display.scroll({top:0})
     tar.updateDisplay();
-
     //lock arrows
     let a = tile.neighbors
     changeArrowState(a.up != null && !a.up.lock, upArrow);
