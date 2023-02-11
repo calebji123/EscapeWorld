@@ -1,7 +1,6 @@
 {
    "stories": {
-      "Demo": "demo.json",
       "Tutorial": "tutorial.json",
-      "test":"test.json"
+      "Demo": "demo.json"
    }
 }
