@@ -1,6 +1,6 @@
-title >> |   Test with all the features;
-areas >> [&#9968; Intro Hills &#9968;, &#127794; Forest of Trials &#127794;, &#9889; Thunderous Plains &#9889;, &#9970; Hopeful Paradise &#9970;];
-colors >> [#ff0000, #00ff00, #0000ff, #8f1a9c, #f7e707];
+title >> "   Test with all the features";
+areas >> ["&#9968; Intro Hills &#9968;", "&#127794; Forest of Trials &#127794;", "&#9889; Thunderous Plains &#9889;", "&#9970; Hopeful Paradise &#9970;"];
+colors >> ["#ff0000", "#00ff00", "#0000ff", "#8f1a9c", "#f7e707"];
 nolocal;
 
 <0000>
@@ -12,17 +12,19 @@ nolocal;
 
 
    <text>
-      Title >> |    I like chicken         |   ;
-      Para >>         Wowza such a long text
+      Title >> "   I like chicken         ";
+      Para >> "         Wowza such a long text
       crazy how it goes on 
-         yep.;
-      Dia >> Man >> Yo wazzup;
+         yep.";
+      Dia >> "Man" >> "Yo wazzup";
    </text>
    <input>
    unlock >> 0000 >> 0100-0;
-   Char >> a >> a;
-   Word >> a >> just type a >> oneword;
+   Char >> "a" >> "a";
+   Word >> "a" >> "just type a" >> oneword;
+   Word-1("just type a") >> "a","b";
    Submit >> >> notlocal;
+   Submit-();
 </0000>
 
 <0100>
@@ -53,8 +55,8 @@ Col >> 2 >> 4;
 Col >> 2;
 Submit >> >> nolocal;
 unlock >> 0010-0100;
-<\input>
-<\1000>
+</input>
+</1000>
 
 <0010>
 start;
@@ -67,9 +69,9 @@ start;
    Col >> 2;
    Submit >> hey >> local;
    </input>
-<\0010>
+</0010>
 
 <0001>
 area >> 0;
 left >> 0000;
-<\0001>
+</0001>
